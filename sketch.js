@@ -9,10 +9,13 @@ let highlights = [];
 let currentSortType = -1
 let sortTypeP = undefined;
 
+const maxBars = 300
+
 function setup() {
   w = windowWidth;
+  console.log(w)
   h = windowHeight-60;
-  bars = 300;
+  bars = map(w, 0, 1600, 0, maxBars)
   createCanvas(w, h)
   sortTypeP = createP(`SortType: ??????????`)
   // frameRate(1)
@@ -31,8 +34,7 @@ function draw() {
 
 function render(){
   background(0);
-  let step = w/bars;
-  let seperator = 10;
+  let step = (w/bars);
   stroke(0)
   strokeWeight(2)
   for(let i = 0; i<arr.length; i++){
@@ -64,27 +66,27 @@ function quickSortFrame(){
 function sortFrame(){
   switch(currentSortType){
     case 0:
-      frameRate(60)
+      frameRate(60*(bars/maxBars))
       selectionSortFrame()
       sortTypeP.html(`SortType: "Selection Sort"`)
       break;
     case 1:
-      frameRate(60)
+      frameRate(60*(bars/maxBars))
       bubbleSortFrame();
       sortTypeP.html(`SortType: "Bubble Sort"`)
       break;
     case 2:
-      frameRate(10)
+      frameRate(10*(bars/maxBars))
       quickSortFrame();
       sortTypeP.html(`SortType: "Quick Sort"`)
       break;
     case 3:
-      frameRate(10)
+      frameRate(10*(bars/maxBars))
       quickSortFrame();
       sortTypeP.html(`SortType: "Quick Sort"`)
       break;
     case 4:
-      frameRate(10)
+      frameRate(10*(bars/maxBars))
       quickSortFrame();
       sortTypeP.html(`SortType: "Quick Sort"`)
       break;
